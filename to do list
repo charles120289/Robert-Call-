@@ -1,1 +1,9 @@
+1.	Ask for user input either rock, paper, or scissor
+2.	A file for scores will be created to store scores
+3.	Computer does random pick of choices with random function and compares the results
+4.	Depending on results user gains a point or computer gains a point and is stored
+5.	Matches will be best 1 out of 3
+6.	Scores will be stored in score file
+7.	Then that file will be read and print out the highest score to date
+8.	Your score, who wins, best high score gets printed
 
