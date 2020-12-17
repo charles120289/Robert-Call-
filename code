@@ -1,0 +1,100 @@
+#Robert Call
+#Programming for IT
+#00232437
+#
+
+def create_file():
+    score_file = 'score_file.txt'
+    high_score = 'high_score.txt'
+    #print('already exist')
+    try:
+        fhand = open(score_file)
+        fhand2 = open(high_score)
+    except:
+        print('file didnt exist')
+        fhand = open(score_file, 'w')
+        print('file didnt exist')
+        fhand2 = open(high_score, 'w')
+        return
+
+def choice_output(x,y):
+    if x == y:
+        points = 0
+        print('tie')
+        print(points)
+    elif x == 'rock':
+         if y == 'paper':
+            print('computer wins a point')
+            comp_points = 1
+            print(comp_points)
+         else:
+            print('player wins a point')
+            player_points = 1
+            print(player_points)
+    elif x == 'paper':
+        if y == 'scissor':
+            print('computer wins a point')
+            comp_points = 1
+            print(comp_points)
+        else:
+            print('player wins a point')
+            player_points = 1
+            print(player_points)
+    elif x == 'scissor':
+        if y == 'rock':
+            print('computer wins a point')
+            comp_points = 1
+            print(comp_points)
+        else:
+            print('player wins a point')
+            player_points = 1
+            print(player_points)
+    else:
+        print('invalid choice')
+        return
+
+#main program
+import random
+score = 'score_file.txt'
+high = 'high_score.txt'
+c = ['rock', 'paper', 'scissor']
+sl = list()
+create_file()
+print('please enter your first choice rock, paper, or scissor')
+x1 = input('')
+y1 = random.choice(c)
+print(y1)
+sl.append(y1)
+sl.append(x1)
+choice_output(x1,y1)
+
+print('\n')
+
+x2 = input('')
+y2 = random.choice(c)
+print(y2)
+sl.append(x2)
+sl.append(y2)
+choice_output(x2,y2)
+
+print('\n')
+
+x3 = input('')
+y3 = random.choice(c)
+print(y3)
+sl.append(x3)
+sl.append(y3)
+choice_output(x3,y3)
+
+#f = open('score_file.txt', 'a')
+#for i in x:
+#    f.write(x)
+#f.close()
+print('\n')
+print(sl)
+print('\n')
+print(sl)
+print(len(sl))
+#score_file.txt.append(x)
+
+input('press enter to quit')
