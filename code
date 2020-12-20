@@ -1,100 +1,166 @@
 #Robert Call
 #Programming for IT
 #00232437
-#
+#This a rock paper scissor lizard spock game i found the idea at
+#https://www.instructables.com/How-to-Play-Rock-Paper-Scissors-Lizard-Spock/
+#The player will face a computer opponent and it will randomly choose its anwser
+#after comparing the two anwsers the program will decide who wins each round then
+#let the player know the score and save it to a file called score list that will
+#be created in the local file system.
 
-def create_file():
+
+def create_file():#this function will try to open the file requested if it doesnt exist it will make one
     score_file = 'score_file.txt'
-    high_score = 'high_score.txt'
-    #print('already exist')
     try:
         fhand = open(score_file)
-        fhand2 = open(high_score)
     except:
         print('file didnt exist')
         fhand = open(score_file, 'w')
-        print('file didnt exist')
-        fhand2 = open(high_score, 'w')
         return
 
-def choice_output(x,y):
+def who_r_u(who):#this function will open the file and search for your user id if it exists will then print your past games
+    try:
+        import re
+        fhand = open('score_file.txt')
+        count = 0
+        print('Here are your scores')
+        for line in fhand:
+            line = line.rstrip()
+            if re.search(who, line):
+                print(line)
+    except:
+        print('hello new user')
+        return
+
+def choice_output(x,y):# this fuction will take player and computer choices and see who wins the round
     if x == y:
         points = 0
         print('tie')
-        print(points)
     elif x == 'rock':
-         if y == 'paper':
+        if y == 'paper' or y == 'spock':
             print('computer wins a point')
             comp_points = 1
-            print(comp_points)
-         else:
+            cpu_score.append(comp_points)
+        else:
             print('player wins a point')
             player_points = 1
-            print(player_points)
+            player_score.append(player_points)
     elif x == 'paper':
-        if y == 'scissor':
+        if y == 'scissor' or y == 'lizard':
             print('computer wins a point')
             comp_points = 1
-            print(comp_points)
+            cpu_score.append(comp_points)
         else:
             print('player wins a point')
             player_points = 1
-            print(player_points)
+            player_score.append(player_points)
     elif x == 'scissor':
-        if y == 'rock':
+        if y == 'rock' or y == 'spock':
             print('computer wins a point')
             comp_points = 1
-            print(comp_points)
+            cpu_score.append(comp_points)
         else:
             print('player wins a point')
             player_points = 1
-            print(player_points)
+            player_score.append(player_points)
+    elif x == 'lizard':
+        if y == 'rock' or y == 'scissor':
+            print('computer wins a point')
+            comp_points = 1
+            cpu_score.append(comp_points)
+        else:
+            print('player wins a point')
+            player_points = 1
+            player_score.append(player_points)
+    elif x == 'spock':
+        if y == 'paper' or y == 'lizard':
+            print('computer wins a point')
+            comp_points = 1
+            cpu_score.append(comp_points)
+        else:
+            print('player wins a point')
+            player_points = 1
+            player_score.append(player_points)
     else:
-        print('invalid choice')
-        return
+            print('invalid choice')
+            return
+
+def intructions(h):#this function ask for a yes or no and depending on the anwser prints out intructins for the game
+    if h == 'yes':
+        print('The intructions for this game goes as follows')
+        print('rock now beats scissor and lizard')
+        print('paper now beats rock and spock')
+        print('scissor now beats paper and lizard')
+        print('lizard beats spock and paper')
+        print('spock beats rock and scissor')
+    elif h == 'no':
+        print('ok enjoy the game.')
+    else:
+        print('please select yes or no')
+        quit()
 
 #main program
+#import random lets the computer make a random choice from c
 import random
-score = 'score_file.txt'
-high = 'high_score.txt'
-c = ['rock', 'paper', 'scissor']
-sl = list()
-create_file()
-print('please enter your first choice rock, paper, or scissor')
-x1 = input('')
-y1 = random.choice(c)
-print(y1)
-sl.append(y1)
-sl.append(x1)
-choice_output(x1,y1)
+score_file = 'score_file.txt'
+c = ['rock', 'paper', 'scissor', 'lizard', 'spock']
+cpu_score = list()#to keep score for the computer
+player_score = list()#to keep score for the player
+who = input('please enter a user id:')#asks for a user name
+h = input('do you want to see the intructions?:')#asks for yes or no to print instructions for the game or not
+
+print('\n')#used to keep output neat
+
+create_file()#this function will create the score file if it doesnt exist alreay in your local file system
+who_r_u(who)#this function will ethier find your existing score with the user id you put
+#or it will add you to the list at the end.
 
 print('\n')
 
+intructions(h)#will print out instructions based on anwser defualt will let you continue the program
+
+print('\n')
+#choice 1
+print('please enter your first choice rock, paper, scissor, lizard, spock')
+x1 = input('')#input from player
+y1 = random.choice(c)#input from computer
+print(y1)
+choice_output(x1,y1)#this function will take players choice and computers choice
+#then compare them and based off the rules it will decide who gets the point for the round.
+
+print('\n')
+#This is for choice 2 acts the same as choice 1
+print('please enter your second choice rock, paper, scissor, lizard, spock')
 x2 = input('')
 y2 = random.choice(c)
 print(y2)
-sl.append(x2)
-sl.append(y2)
 choice_output(x2,y2)
 
 print('\n')
-
+#This is for choice 3 acts the same as choice 1
+print('please enter your third choice rock, paper, scissor, lizard, spock')
 x3 = input('')
 y3 = random.choice(c)
 print(y3)
-sl.append(x3)
-sl.append(y3)
 choice_output(x3,y3)
 
-#f = open('score_file.txt', 'a')
-#for i in x:
-#    f.write(x)
-#f.close()
 print('\n')
-print(sl)
-print('\n')
-print(sl)
-print(len(sl))
-#score_file.txt.append(x)
+#saves the final game score in a user: player score, computer score and will be saved on one line
+#in this format for easy look up for our functions to find in the score file.
+game_score = who, 'player score', len(player_score), 'computer score', len(cpu_score)
 
-input('press enter to quit')
+print('\n')
+
+print(game_score)#prints out the final game score at the end
+
+print('\n')
+#Will open score_file.txt append the new score and then close it
+f = open('score_file.txt', 'a')
+f.write('\n')
+f.write(str(game_score))#turns the game_score into a string so it can be written to the file
+f.close()
+
+print('\n')
+
+print()
+input('press enter to quit')#to keep the program open until the user is ready to quit
